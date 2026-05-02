@@ -338,25 +338,32 @@ body{font-size:20px!important;}
 </style>
 <meta name="wy-full-protection" content="v2-light"><meta name="robots" content="noai, noimageai, noarchive, noindex, nofollow"><meta name="googlebot" content="noai, noimageai, noarchive"><meta name="bingbot" content="noai, noimageai, noarchive"><meta name="ChatGPT-User" content="noai"><meta name="GPTBot" content="noai"><meta name="ClaudeBot" content="noai"><meta name="CCBot" content="noai"><meta name="Google-Extended" content="noai"><meta name="anthropic-ai" content="noai"><meta name="PerplexityBot" content="noai"><style id="wy-preguard">html{visibility:hidden!important}</style><style id="wy-l3-print">
 @media print{
-  html,body,body *{visibility:hidden!important;}
-  body::before{
-    content:"此頁僅供線上閱讀，請勿列印或另存為 PDF。";
-    display:block!important;visibility:visible!important;
-    padding:40vh 20px!important;text-align:center!important;
-    font:500 18px/1.9 'Noto Serif TC','Noto Sans TC',serif!important;
-    color:#5a3a1a!important;
+  html,body{background:#ffffff!important;}
+  html,body,body *,body *::before,body *::after{
+    visibility:hidden!important;
+    color:transparent!important;
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+    border-color:transparent!important;
   }
   @page{size:auto;margin:0;}
 }
 </style><script id="wy-main-protection">
 (function(){
-  // 共用：鎖定頁（無 DOM swap 為警告頁，僅在 origin/freshness fail 才用，可由設定關閉）
+  // 共用：鎖定頁 — 全白空白（依使用者指示「無警告頁面」）
+  // 不移除 preguard、清空 body、把整頁底色改純白；不留任何文字
   function lockdown(reason){
+    try{ document.body.innerHTML = ''; }catch(e){}
+    try{
+      document.documentElement.style.cssText = 'background:#ffffff!important;visibility:visible!important;';
+      document.body.style.cssText = 'margin:0!important;padding:0!important;background:#ffffff!important;min-height:100vh!important;';
+    }catch(e){}
+    // 順手移除 preguard 讓白底可見（不留 visibility:hidden 以免完全黑屏）
     try{
       var s = document.getElementById('wy-preguard');
       if(s) s.parentNode.removeChild(s);
     }catch(e){}
-    document.body.innerHTML = '<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;font-family:Noto Serif TC,serif;color:#5a3a1a;background:#f7f3ec;padding:40px;"><div><div style="font-size:24px;margin-bottom:18px;letter-spacing:4px;">此頁需由正式網址線上存取</div><div style="font-size:14px;opacity:.7;">'+reason+'</div></div></div>';
   }
 
   // === L4 · Origin Lock（同步檢查）===
